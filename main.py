@@ -26,6 +26,7 @@ def perform_calculation_and_display(num1, num2, operation_type):
         print("Error: Division by zero.")
     except Exception as e:
         print(f"An error occurred: {e}")
+        
 
 def main():
     """
