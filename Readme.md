@@ -1,5 +1,12 @@
 # Homework 4 - Calculator Application Faker
 
+
+## **Submission Instructions**
+-  `main` , `faker` and `command` branches with respective changes.
+- The repo link to be submitted: [GitHub Repository](https://github.com/Satyabandi20/homework4)
+- **Test Logs Screenshot:**  
+  ![Test Logs](tests/image.jpeg)
+
 ## Overview
 This project enhances a simple calculator application by adding:
 - **Faker** for generating test data
@@ -78,12 +85,6 @@ python main.py 5 3 add
 1. **faker branch** - Added Faker for test data generation.
 2. **command branch** - Added CLI handling (`main.py`, `test_main.py`).
 3. **main branch** - Merged final working solution (all features integrated).
-
-## **Submission Instructions**
-- All changes have been merged into `main`.
-- The repo link to be submitted: [GitHub Repository](https://github.com/Satyabandi20/homework4)
-- **Test Logs Screenshot:**  
-  ![Test Logs](tests/image.jpeg)
 
 ---
 
