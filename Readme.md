@@ -1,4 +1,4 @@
-# Homework 4 - Calculator Application
+# Homework 4 - Calculator Application Faker
 
 ## Overview
 This project enhances a simple calculator application by adding:
