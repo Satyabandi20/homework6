@@ -65,7 +65,7 @@ This project enhances a simple calculator application by adding:
   ```
 
 ## **How to Use the CLI**
-To run calculations via command line:
+To run calculations via command line :
 ```bash
 python main.py <num1> <num2> <operation>
 ```
