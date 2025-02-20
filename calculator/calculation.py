@@ -68,7 +68,7 @@ class Calculation:
         """
         return Calculation(a, b, operation)
     
-    def __strrepr__(self) -> str:
+    def __repr__(self) -> str:
         """
         Return a string representation of the Calculation instance.
 
@@ -76,3 +76,4 @@ class Calculation:
             str: A string representing the Calculation.
         """
         return f"Calculation({self.a}, {self.b}, {self.operation.__name__})"
+
