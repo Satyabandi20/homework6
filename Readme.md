@@ -4,6 +4,8 @@
 ## **Submission Instructions**
 -  `main` , `faker` and `command` branches with respective changes.
 - The repo link to be submitted: [GitHub Repository](https://github.com/Satyabandi20/homework4)
+- **Test Logs Screenshot:**  
+  ![Test Logs](tests/image.jpeg)
 
 ## Overview
 This project enhances a simple calculator application by adding:
