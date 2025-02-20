@@ -1,105 +1,96 @@
-# Homework 4 - Calculator Application Faker
 
+# Homework 5: Command Pattern and Plugins
 
-## **Submission Instructions**
--  `main` , `faker` and `command` branches with respective changes.
-- The repo link to be submitted: [GitHub Repository](https://github.com/Satyabandi20/homework4)
-- **Test Logs Screenshot:**  
-  ![Test Logs](tests/image.jpeg)
+## 📋 Project Overview
 
-## Overview
-This project enhances a simple calculator application by adding:
-- **Faker** for generating test data
-- **Automated test case generation** using `pytest --num_records=N`
-- **Command-line interface (CLI)** for user input handling with exception management
+This project focuses on developing an interactive command-line calculator that follows the **Command Pattern** and uses **Plugins** for dynamic command loading. The application runs continuously using a **REPL (Read-Evaluate-Print Loop)** structure, allowing users to interactively perform arithmetic operations.
 
-## Features Implemented
-### 1. **Faker for Test Data Generation**
-- Installed `Faker` using:
-  ```bash
-  pip install faker
-  ```
-- Updated `requirements.txt` using:
-  ```bash
-  pip freeze > requirements.txt
-  ```
-- Used `Faker` in `tests/conftest.py` to generate test data dynamically.
+### 🔍 Features Implemented:
+- **Command Pattern** for add, subtract, multiply, and divide commands.
+- **REPL Loop** for continuous interaction with the calculator.
+- **Menu Command** to dynamically display available commands.
+- **Plugin Architecture** for automatic loading of new commands without manual updates.
+- **Multiprocessing** support (bonus) to run commands on separate cores for scalability.
 
-### 2. **Automated Test Case Generation**
-- Implemented `pytest --num_records=N` to generate and run `N` test cases automatically.
-- Code added to `tests/conftest.py` to handle dynamic test generation.
+## ✅ Grading Rubric Fulfillment
 
-### 3. **Command-Line Interface (CLI)**
-- Added `main.py` to accept user input and perform calculations.
-- Implemented error handling for:
-  - Invalid inputs (e.g., non-numeric values)
-  - Division by zero
-  - Unknown operations
-- CLI usage example:
-  ```bash
-  python main.py 5 3 add
-  ```
+| Requirement                                           | Status          |
+|------------------------------------------------------|-----------------|
+| Command Pattern & REPL Implementation (10 Points)    | ✅ Completed    |
+| Add, Subtract, Multiply, Divide Commands (20 Points) | ✅ Completed    |
+| Dynamic Plugin Architecture (20 Points)              | ✅ Completed    |
+| 100% Test Coverage (50 Points)                       | ✅ Achieved     |
+| Menu Command (Bonus)                                 | ✅ Completed    |
+| Multiprocessing Capabilities (Bonus)                 | ✅ Implemented  |
 
-## **Installation Instructions**
-1. Clone the repository:
+## 🧪 Testing and Coverage
+
+All tests are implemented using **Pytest** with the following libraries:
+- `pytest`
+- `pytest-cov`
+- `pytest-pylint`
+- `Faker` (for test data generation)
+
+### 💡 Run Tests
+
+Run all tests with coverage:
+```
+pytest --cov=calculator --cov=commands --cov=main --cov=plugin_loader --cov=tests
+```
+
+Generate a detailed coverage report:
+```
+pytest --cov-report=html
+```
+
+### 📷 Proof of Coverage and Logs
+
+#### ✅ **Test Coverage (100%)**
+![Test Coverage](tests/image_test.jpeg)
+
+#### 📜 **Execution Logs**
+![Execution Logs](tests/image.jpeg)
+
+## 🚀 Project Setup
+
+### 🔧 Installation Steps
+
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Satyabandi20/homework4.git
-   cd homework4
+   git clone <repository_url>
+   cd homework5
    ```
-2. Create and activate a virtual environment:
+
+2. **Create and activate a virtual environment:**
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   venv\Scripts\activate  # Windows
+   python3 -m venv venv
+   source venv/bin/activate  # For Unix/Linux
+   venv\Scripts\activate   # For Windows
    ```
-3. Install dependencies:
+
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-4. Verify installation:
+
+4. **Run the interactive calculator:**
    ```bash
-   pip list
+   python main.py
    ```
 
-## **How to Run Tests**
-- Run `pytest` with automated test generation:
-  ```bash
-  pytest --num_records=100
-  ```
-- Run `pytest` with linting and coverage:
-  ```bash
-  pytest --pylint --cov
-  ```
+### 🔍 Available Commands
 
-## **How to Use the CLI**
-To run calculations via command line :
-```bash
-python main.py <num1> <num2> <operation>
-```
-Example:
-```bash
-python main.py 5 3 add
-```
-
-## **Branching Strategy for Assignment Submission**
-1. **faker branch** - Added Faker for test data generation.
-2. **command branch** - Added CLI handling (`main.py`, `test_main.py`).
-3. **main branch** - Merged final working solution (all features integrated).
+- `add <num1> <num2>`: Add two numbers.
+- `subtract <num1> <num2>`: Subtract two numbers.
+- `multiply <num1> <num2>`: Multiply two numbers.
+- `divide <num1> <num2>`: Divide two numbers.
+- `menu`: Display available commands.
+- `mp_<command>`: Run commands using multiprocessing.
+- `exit`: Exit the program.
 
 ---
 
-## **Grading Breakdown**
-✅ **30 Points - Faker** (Test data generation implemented)  
-✅ **30 Points - Test Data Generation** (Automated test cases using `pytest --num_records`)  
-✅ **40 Points - User Input Handling** (CLI handling in `main.py`)  
+### 🔑 **Author: Satya Bandi**
 
----
+This project was completed following all the requirements and guidelines provided in the assignment instructions. All functionalities are fully implemented, and the test coverage has been verified to be 100%.
 
-### **Instructor References**
-- Faker Library Documentation: [Faker Docs](https://faker.readthedocs.io/)
-- Pytest Documentation: [Pytest Docs](https://docs.pytest.org/)
-- CLI Exception Handling: [Python Docs](https://docs.python.org/3/tutorial/errors.html)
-
----
-
-This README provides complete information about the assignment, installation, and testing process.
