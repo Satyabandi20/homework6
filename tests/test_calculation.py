@@ -36,19 +36,17 @@ def test_operate(n1, n2, operation, expected):
     calc = Calculation(n1, n2, operation)
     assert calc.operate() == expected, "Operation failed!"
 
-def test_strrepr():
+def test_repr():
     """
     Test the string representation of the Calculation class.
 
     This test creates a Calculation instance and checks that its
     string representation matches the expected format.
-
-    Args:
-        None
     """
     calc = Calculation(Decimal('2'), Decimal('2'), add)
     str_match = "Calculation(2, 2, add)"
-    assert calc.__strrepr__() == str_match, f"Expected {str_match} not equal to {calc.__strrepr__()}."
+    assert repr(calc) == str_match, f"Expected {str_match} not equal to {repr(calc)}."
+
 
 def test_divide_by_zero():
     """
@@ -63,3 +61,14 @@ def test_divide_by_zero():
     calc = Calculation(Decimal('5'), Decimal('0'), divide)
     with pytest.raises(ValueError, match="Cannot divide by zero"):
         calc.operate()
+
+def test_repr():
+    calc = Calculation(Decimal('3'), Decimal('2'), subtract)
+    assert repr(calc) == "Calculation(3, 2, subtract)"
+
+def test_repr_edge_case():
+    """
+    Test edge case where the operation function name might not exist.
+    """
+    calc = Calculation(Decimal('0'), Decimal('0'), lambda a, b: a + b)
+    assert "Calculation(0, 0, <lambda>)" in repr(calc)

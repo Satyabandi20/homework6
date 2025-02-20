@@ -92,3 +92,7 @@ def test_find_by_operation(sample_operations):
     assert len(add_find) == 1, "Count of add operations doesn't match."
     multiply_filter = calculations.filter_with_operation("multiply")
     assert len(multiply_filter) == 1, "count of multiply operations doesnt match"
+
+def test_clear_history():
+    calculations.delete_calculation()
+    assert len(calculations.history) == 0
