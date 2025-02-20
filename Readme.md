@@ -35,7 +35,7 @@ All tests are implemented using **Pytest** with the following libraries:
 
 Run all tests with coverage:
 ```
-pytest --cov=calculator --cov=commands --cov=main --cov=plugin_loader --cov=tests
+pytest --cov=calculator --cov=commands
 ```
 
 Generate a detailed coverage report:
