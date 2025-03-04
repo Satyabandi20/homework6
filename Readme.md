@@ -1,96 +1,106 @@
+# Homework 6: Getting Ready for Production
 
-# Homework 5: Command Pattern and Plugins
+## Introduction
 
-## 📋 Project Overview
+This project enhances an **interactive calculator** to be **production-ready** by integrating:
 
-This project focuses on developing an interactive command-line calculator that follows the **Command Pattern** and uses **Plugins** for dynamic command loading. The application runs continuously using a **REPL (Read-Evaluate-Print Loop)** structure, allowing users to interactively perform arithmetic operations.
+- **Continuous Integration (CI)** with GitHub Actions.
+- **Environment Variables** to manage configuration securely.
+- **Logging** for tracking application execution and debugging.
 
-### 🔍 Features Implemented:
-- **Command Pattern** for add, subtract, multiply, and divide commands.
-- **REPL Loop** for continuous interaction with the calculator.
-- **Menu Command** to dynamically display available commands.
-- **Plugin Architecture** for automatic loading of new commands without manual updates.
-- **Multiprocessing** support (bonus) to run commands on separate cores for scalability.
+These improvements align with **DevOps principles** to automate testing, improve security, and enhance maintainability.
 
-## ✅ Grading Rubric Fulfillment
+---
 
-| Requirement                                           | Status          |
-|------------------------------------------------------|-----------------|
-| Command Pattern & REPL Implementation (10 Points)    | ✅ Completed    |
-| Add, Subtract, Multiply, Divide Commands (20 Points) | ✅ Completed    |
-| Dynamic Plugin Architecture (20 Points)              | ✅ Completed    |
-| 100% Test Coverage (50 Points)                       | ✅ Achieved     |
-| Menu Command (Bonus)                                 | ✅ Completed    |
-| Multiprocessing Capabilities (Bonus)                 | ✅ Implemented  |
+## Features Added in Homework 6
 
-## 🧪 Testing and Coverage
+1. **GitHub Actions:** Automates running tests on each push or pull request to `main`.  
+2. **Environment Variables:** Manages application configuration securely in a `.env` file.  
+3. **Logging:** Implements structured logging to monitor operations, errors, and debugging information.
 
-All tests are implemented using **Pytest** with the following libraries:
-- `pytest`
-- `pytest-cov`
-- `pytest-pylint`
-- `Faker` (for test data generation)
+---
 
-### 💡 Run Tests
+**Note**: `.env` is **ignored** by Git, so it won’t appear on GitHub.
 
-Run all tests with coverage:
-```
-pytest --cov=calculator --cov=commands
-```
+---
 
-Generate a detailed coverage report:
-```
-pytest --cov-report=html
-```
+## Setup Instructions
 
-### 📷 Proof of Coverage and Logs
-
-#### ✅ **Test Coverage (100%)**
-![Test Coverage](tests/image_test.jpeg)
-
-#### 📜 **Execution Logs**
-![Execution Logs](tests/image.jpeg)
-
-## 🚀 Project Setup
-
-### 🔧 Installation Steps
-
-1. **Clone the repository:**
+1. **Clone the repository**:
    ```bash
-   git clone <repository_url>
-   cd homework5
+   git clone https://github.com/Satyabandi20/homework6
+   cd homework6
    ```
-
-2. **Create and activate a virtual environment:**
+2. **Create & activate a virtual environment**:
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # For Unix/Linux
-   venv\Scripts\activate   # For Windows
+   python -m venv venv
+   source venv/bin/activate      # Mac/Linux
+   venv\Scripts\activate         # Windows
    ```
-
-3. **Install dependencies:**
+3. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Run the interactive calculator:**
-   ```bash
-   python main.py
-   ```
+---
 
-### 🔍 Available Commands
+## Environment Variables
 
-- `add <num1> <num2>`: Add two numbers.
-- `subtract <num1> <num2>`: Subtract two numbers.
-- `multiply <num1> <num2>`: Multiply two numbers.
-- `divide <num1> <num2>`: Divide two numbers.
-- `menu`: Display available commands.
-- `mp_<command>`: Run commands using multiprocessing.
-- `exit`: Exit the program.
+- Created  **`.env`**  
+- format:
+  ```bash
+  ENV_NAME="development"
+  LOG_LEVEL="INFO"
+  ```
+- The app code in `app/__init__.py` loads `.env` via `python-dotenv` and sets:
+  ```python
+  load_dotenv()
+  self.env_name = os.getenv("ENV_NAME", "Production")
+  ```
+- The test `test_app.py::test_environment_loaded` ensures the environment variable is recognized.  
+- On GitHub, the `ENV_NAME` is set in `.github/workflows/python-app.yml` under `env:` so that test doesn’t fail.
 
 ---
 
-### 🔑 **Author: Satya Bandi**
+## Logging
 
-This project was completed following all the requirements and guidelines provided in the assignment instructions. All functionalities are fully implemented, and the test coverage has been verified to be 100%.
+- **Default** logs go to the console.  
+- If `logging.conf` exists, a rotating file handler writes logs to `logs/app.log`.
+- Example logs:
+  ```
+(venv) @Satyabandi20 ➜ /workspaces/homework6 (main) $ python main.py
+2025-03-04 19:29:12,465 - __main__ - INFO - Environment: development
+2025-03-04 19:29:12,466 - __main__ - INFO - Plugin commands loaded.
+  ```
 
+## GitHub Actions
+
+- `.github/workflows/python-app.yml` defines a **CI pipeline**:
+  ```yaml
+  name: Python application
+  on:
+    push:
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
+  env:
+    ENV_NAME: development
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Set up Python 3.10
+          uses: actions/setup-python@v3
+          with:
+            python-version: "3.10"
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install flake8 pytest
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        - name: Test with pytest --pylint
+          run: |
+            pytest
+  ```
+---
